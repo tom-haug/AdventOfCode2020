@@ -1,6 +1,6 @@
 import os
 import sys
-import day02_part02
+from day02 import day02_part02
 import unittest
 
 

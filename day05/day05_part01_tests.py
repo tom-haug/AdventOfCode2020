@@ -1,7 +1,7 @@
 import os
 import sys
 import unittest
-from day05_common import build_boarding_pass_list_from_file, get_max_seat_boarding_pass
+from day05.day05_common import build_boarding_pass_list_from_file, get_max_seat_boarding_pass
 
 
 class TestDay05Part01(unittest.TestCase):

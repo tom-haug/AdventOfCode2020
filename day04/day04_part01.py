@@ -1,7 +1,6 @@
 import os
 import sys
-import day04_common
-
+from day04 import day04_common
 
 if __name__ == '__main__':
     file_path = os.path.join(sys.path[0], "input.txt")

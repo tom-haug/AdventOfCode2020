@@ -1,7 +1,7 @@
 import os
 import sys
 import unittest
-import day03_part01
+from day03 import day03_part01
 
 
 class TestDay03Part01(unittest.TestCase):

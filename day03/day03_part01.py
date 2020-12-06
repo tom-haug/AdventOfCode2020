@@ -1,6 +1,6 @@
 import os
 import sys
-import day03_common
+from day03 import day03_common
 
 
 if __name__ == '__main__':

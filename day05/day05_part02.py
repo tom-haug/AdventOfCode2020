@@ -1,7 +1,7 @@
 import os
 import sys
 import math
-from day05_common import build_boarding_pass_list_from_file, get_max_seat_boarding_pass, find_missing_seat
+from day05.day05_common import build_boarding_pass_list_from_file, get_max_seat_boarding_pass, find_missing_seat
 
 if __name__ == '__main__':
     file_path = os.path.join(sys.path[0], "input.txt")
