@@ -1,7 +1,7 @@
 import os
 import sys
 import unittest
-from day06.day06_part01 import build_passengers_from_file
+from day06_part01 import build_passengers_from_file
 
 
 class TestDay06Part01(unittest.TestCase):
@@ -13,6 +13,8 @@ class TestDay06Part01(unittest.TestCase):
         passenger_groups = build_passengers_from_file(file_path)
         total_unique_answers = [answer for group in passenger_groups for unique_answers in group.get_unique_answers()
                                 for answer in unique_answers]
+
+        # Assert
         self.assertEqual(len(total_unique_answers), 11)
 
 
