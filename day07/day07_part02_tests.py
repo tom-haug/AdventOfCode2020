@@ -12,7 +12,7 @@ class TestDay07Part02(unittest.TestCase):
             with self.subTest(file_name):
                 self._test_sample01(file_name, expected_total_count)
 
-    def _test_sample01(self, file_name, expected_total_count):
+    def _test_part02(self, file_name, expected_total_count):
         print('testing ' + file_name)
         #Arrange
         file_path = os.path.join(sys.path[0], file_name)
