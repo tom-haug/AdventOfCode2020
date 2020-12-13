@@ -2,7 +2,7 @@ import os
 import sys
 import unittest
 
-from day10_part01 import load_joltage_list_from_file, get_part01_result_from_joltage_list
+from day10_common import load_joltage_list_from_file, get_part01_result_from_joltage_list
 
 
 class TestDay10Part01(unittest.TestCase):
