@@ -19,14 +19,14 @@ class TestDay13Part02(unittest.TestCase):
                 self._test_part02(file_name, expected_total_count)
 
     def _test_part02(self, file_name: str, expected_result: int):
-        #Arrange
+        # Arrange
         file_path = os.path.join(sys.path[0], file_name)
 
-        #Act
+        # Act
         buses, initial_time = build_bus_schedules_from_file(file_path)
         base_time = get_base_time_for_bus_offsets(buses)
 
-        #Assert
+        # Assert
         self.assertEqual(base_time, expected_result)
 
 
