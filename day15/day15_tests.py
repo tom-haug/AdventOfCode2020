@@ -3,7 +3,7 @@ import unittest
 from day15_common import play_game
 
 
-class TestDay14(unittest.TestCase):
+class TestDay15(unittest.TestCase):
     def test_part01(self):
         param_list = [('0,3,6', 436),
                       ('1,3,2', 1),
