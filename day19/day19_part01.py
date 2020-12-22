@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+import copy
 import os
 import sys
 import re
@@ -35,14 +37,14 @@ class InputRule:
     def validate_input_list(self, inputs: list[str], rule_library: dict[int, InputRule]) -> (list[str]):
         return_inputs = []
         for input in inputs:
-            return_inputs = return_inputs + self.validate_input(input, rule_library)
+            return_inputs = return_inputs + self._validate_input(input, rule_library)
 
         # remove duplicates
         deduped = []
         [deduped.append(x) for x in return_inputs if x not in deduped]
         return deduped
 
-    def validate_input(self, input: str, rule_library: dict[int, InputRule]) -> (list[str]):
+    def _validate_input(self, input: str, rule_library: dict[int, InputRule]) -> (list[str]):
         # if we are down to no more input, but there are still rules to satisfy
         # then input is INVALID
         if len(input) == 0:
@@ -60,9 +62,10 @@ class InputRule:
 
         # try first option rules
         remaining_input_first_option = [input]
-        # first_option_success = False
         if len(self.first_option_ordered_rules) > 0:
-            check_rules = [rule_library[rule] for rule in self.first_option_ordered_rules]
+            check_rules = [copy.deepcopy(rule_library[rule]) for rule in self.first_option_ordered_rules]
+            if len(check_rules) == 0:
+                raise(Exception('check_rules should not be empty!'))
             for cur_rule in check_rules:
                 remaining_input_first_option = cur_rule.validate_input_list(remaining_input_first_option, rule_library)
                 if len(remaining_input_first_option) == 0:
@@ -70,9 +73,10 @@ class InputRule:
 
         # try second option rules
         remaining_input_second_option = [input]
-        # second_option_success = False
         if len(self.second_option_ordered_rules) > 0:
-            check_rules = [rule_library[rule] for rule in self.second_option_ordered_rules]
+            check_rules = [copy.deepcopy(rule_library[rule]) for rule in self.second_option_ordered_rules]
+            if len(check_rules) == 0:
+                raise(Exception('check_rules should not be empty!'))
             for cur_rule in check_rules:
                 remaining_input_second_option = cur_rule.validate_input_list(remaining_input_second_option, rule_library)
                 if len(remaining_input_second_option) == 0:
@@ -102,7 +106,7 @@ def load_input_from_file(file_name: str) -> (dict[InputRule], list[str]):
 
 
 if __name__ == '__main__':
-    file_name = 'input_part02.txt'
+    file_name = 'input_part02.txt' # 'input_part02.txt'
     rule_library, messages = load_input_from_file(file_name)
     print('len(rules)', len(rule_library))
     print('messages', messages)
@@ -111,7 +115,7 @@ if __name__ == '__main__':
 
     print(root_rule.rule_id)
 
-    message_validation_results = [(message, root_rule.validate_input(message, rule_library)) for message in messages]
+    message_validation_results = [(message, root_rule.validate_input_list([message], rule_library)) for message in messages]
 
     valid_messages = [(message, result) for message, result in message_validation_results if '' in result]
 
@@ -120,5 +124,5 @@ if __name__ == '__main__':
         print('result', result)
     print(f'valid messages: {len(valid_messages)}')
 
-
-# part 2: 274 too high
+# total messages: 405
+# part 2: 274 too high, 273 too high
