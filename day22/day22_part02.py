@@ -2,15 +2,9 @@ import day22_common as common
 
 if __name__ == "__main__":
     file_name = "input.txt"
-    recursive_mode = False
+    recursive_mode = True
 
     card_game = common.create_card_game_from_file(file_name, recursive_mode)
-
-    print("Initial Decks")
-    print("Player 1 deck")
-    print(card_game.player_one_deck)
-    print("Player 2 deck")
-    print(card_game.player_two_deck)
 
     card_game.play_game()
 
@@ -24,3 +18,6 @@ if __name__ == "__main__":
     print(card_game.player_two_deck)
     print(f"Winner: {winning_player_number}")
     print(f"Score: {winning_score}")
+
+
+# Try one 31300
