@@ -4,11 +4,6 @@ import functools
 
 
 class CardGame:
-    # def __init__(self, file_name: str, recursive_mode: bool):
-    #     self.load_input_from_file(file_name)
-    #     self.rounds_played = 0
-    #     self.recursive_mode = recursive_mode
-
     def __init__(self, player_one_deck: list[int], player_two_deck: list[int], recursive_mode: bool):
         self.player_one_deck = player_one_deck
         self.player_two_deck = player_two_deck
@@ -17,17 +12,17 @@ class CardGame:
         self.player_one_deck_history: list[str] = []
         self.player_one_override_win = False
 
-        print("Player 1 deck")
-        print(player_one_deck)
-        print("Player 2 deck")
-        print(player_two_deck)
+        # print("Player 1 deck")
+        # print(player_one_deck)
+        # print("Player 2 deck")
+        # print(player_two_deck)
 
     def play_game(self):
         keep_going = True
 
         while keep_going:
             keep_going = self.play_round()
-            print(f"Round: {self.rounds_played}")
+            # print(f"Round: {self.rounds_played}")
 
     def play_round(self):
         self.rounds_played += 1
@@ -56,12 +51,9 @@ class CardGame:
         player_one_deck_str_list = [str(val) for val in self.player_one_deck]
         return ",".join(player_one_deck_str_list)
 
-    # def player_one_override_win(self):
-    #     return self.player_one_deck_serialized() in self.player_one_deck_history
-
     def determine_round_winner(self, player_one_value: int, player_two_value: int) -> int:
         if self.recursive_mode and len(self.player_one_deck) >= player_one_value and len(self.player_two_deck) >= player_two_value:
-            print("creating sub game")
+            # print("creating sub game")
             sub_game = CardGame(self.player_one_deck[:player_one_value], self.player_two_deck[:player_two_value], self.recursive_mode)
             sub_game.play_game()
             (winning_player_number, winning_score) = sub_game.calculate_winner()
